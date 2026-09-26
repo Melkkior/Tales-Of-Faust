@@ -1,6 +1,6 @@
 package Monsters
 
-class Goblin {
+class monster {
     public var name = "Goblin"
     public var Alive = true
     public var life = 45

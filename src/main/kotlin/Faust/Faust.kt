@@ -11,6 +11,7 @@ class Faust {
     public var Attack = 24
     public var XP = 0
     public var XPtotal = 100
+    public var Gold = 0
     public var Sword = Sword()
     public var Armor = Armor()
 
@@ -20,6 +21,10 @@ class Faust {
 
     fun Evoluir(xpM: Int){
         XP += xpM
+    }
+
+    fun saquear(ouro: Int){
+        Gold += ouro
     }
 
     fun SubirDeNivel(){
