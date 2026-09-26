@@ -7,23 +7,111 @@ import Monsters.Corvo
 import Monsters.Slime
 import Monsters.Prinny
 import Monsters.`Nivel 1`.Monster
+import Monsters.`Nivel 2`.Bruxa
+import Monsters.`Nivel 2`.Esqueleto
+import Monsters.`Nivel 2`.Fantasma
+import Monsters.`Nivel 2`.Lobo
+import Monsters.`Nivel 2`.Sacerdotisa
+import Monsters.`Nivel 3`.Bibliotecaria
+import Monsters.`Nivel 3`.China
+import Monsters.`Nivel 3`.Principe
+import Monsters.`Nivel 3`.Princesa
+import Monsters.`Nivel 3`.Tubarao
+import Monsters.`Nivel 4`.Cultista
+import Monsters.`Nivel 4`.Empregada
+import Monsters.`Nivel 4`.Golem
+import Monsters.`Nivel 4`.Oni
+import Monsters.`Nivel 4`.Valkyria
+import Monsters.`Nivel 5`.Hydra
+import Monsters.`Nivel 5`.Marte
+import Monsters.`Nivel 5`.Rei
+import Monsters.`Nivel 5`.Tepes
+import Monsters.`Nivel 5`.Vampira
 
 fun main() {
     var Fausto = Faust()
     var nivelDungeon = 1
     var proxNivel = 0
+    var kk = true
 
     while (true){
-
+    if(kk == true){
+        when (nivelDungeon){
+            1 -> {
+                println("[DUNGEON NV01] OS SOFRIMENTOS DO JOVEM WERTHER")
+                kk = false
+            }
+            2 -> {
+                println("[DUNGEON NV02] AFINIDADES ELETIVAS")
+                kk = false
+            }
+            3 -> {
+                println("[DUNGEON NV03] TRILOGIA DA PAIXÃO")
+                kk = false
+            }
+            4 -> {
+                println("[DUNGEON NV04] OS ANOS DE APRENDIZADO DE WILHELM MEISTER")
+                kk = false
+            }
+            5 -> {
+                println("[DUNGEON NV05] FAUSTO")
+                kk = false
+            }
+        }
+    }
         var num = Random.nextInt(1,5)
         var Monster: Monster? = null
-        when (num)
-        {
-            1 -> {Monster = FadaGelo()}
-            2 -> {Monster = Corvo()}
-            3 -> {Monster = goblin()}
-            4 -> {Monster = Slime()}
-            5 -> {Monster = Prinny()}
+        when(nivelDungeon){
+            1->{
+                when (num)
+                {
+                    1 -> {Monster = FadaGelo()}
+                    2 -> {Monster = Corvo()}
+                    3 -> {Monster = goblin()}
+                    4 -> {Monster = Slime()}
+                    5 -> {Monster = Prinny()}
+                }
+            }
+            2->{
+                when (num)
+                {
+                    1 -> {Monster = Lobo()}
+                    2 -> {Monster = Fantasma()}
+                    3 -> {Monster = Sacerdotisa()}
+                    4 -> {Monster = Bruxa()}
+                    5 -> {Monster = Esqueleto()}
+                }
+            }
+            3->{
+                when (num)
+                {
+                    1 -> {Monster = China()}
+                    2 -> {Monster = Bibliotecaria()}
+                    3 -> {Monster = Princesa()}
+                    4 -> {Monster = Principe()}
+                    5 -> {Monster = Tubarao()}
+                }
+            }
+            4->{
+                when (num)
+                {
+                    1 -> {Monster = Valkyria()}
+                    2 -> {Monster = Golem()}
+                    3 -> {Monster = Cultista()}
+                    4 -> {Monster = Oni()}
+                    5 -> {Monster = Empregada()}
+                }
+            }
+            5->{
+                when (num)
+                {
+                    1 -> {Monster = Tepes()}
+                    2 -> {Monster = Vampira()}
+                    3 -> {Monster = Marte()}
+                    4 -> {Monster = Rei()}
+                    5 -> {Monster = Hydra()}
+                }
+            }
         }
 
         val monstro = Monster ?: throw IllegalStateException("Monstro não foi inicializado")
@@ -101,6 +189,7 @@ fun main() {
                         nivelDungeon++
                         proxNivel = 0
                         rep = false
+                        kk = true
                     }
                     3 -> println("Alternativa indisponivel no momento")
                     4 -> {
