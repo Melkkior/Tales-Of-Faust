@@ -1,10 +1,10 @@
 import Faust.Faust
-
+import Monsters.Goblin
 fun main() {
     var Fausto = Faust()
-    println("[FAUSTO]")
-    println("lEVEL: ${Fausto.Level}")
-    println("VIDA: ${Fausto.Life}")
-    println("DEFESA: ${Fausto.Defese}")
-    println("ATAQUE: ${Fausto.Attack}")
+    var Monster = Goblin()
+    while(Fausto.Alive == true && Monster.Alive == true){
+        println("[${Monster.name}] apareceu!")
+        println("[${Monster.name}'s life] -> ${Monster.life}/${Monster.lifeTotal}")
+    }
 }
