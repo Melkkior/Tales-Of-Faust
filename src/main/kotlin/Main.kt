@@ -1,9 +1,28 @@
 import Faust.Faust
-import Monsters.monster
+import kotlin.random.Random
+import Monsters.goblin
+import Monsters.FadaGelo
+import Monsters.Corvo
+import Monsters.Slime
+import Monsters.Prinny
+import Monsters.`Nivel 1`.Monster
+
 fun main() {
     var Fausto = Faust()
-    var Monster = monster()
+    var num = Random.nextInt(1,5)
+    var Monster: Monster? = null
+    when (num)
+    {
+        1 -> {Monster = FadaGelo()}
+        2 -> {Monster = Corvo()}
+        3 -> {Monster = goblin()}
+        4 -> {Monster = Slime()}
+        5 -> {Monster = Prinny()}
+    }
+
+    val monstro = Monster ?: throw IllegalStateException("Monstro não foi inicializado")
     var decisao = 0
+
     println("[${Monster.name}] apareceu!")
     while(Fausto.Alive == true && Monster.Alive == true){
         println("[${Monster.name}'s life] -> ${Monster.life}/${Monster.lifeTotal}")
@@ -21,10 +40,11 @@ fun main() {
             2 -> println("Ação indisponivel no momento")
         }
         if(Monster.life > 0){
-            println("[${Monster.name}] usou atacar!]")
+            println("[${Monster.name}] usou atacar!")
             val dano = Monster.Atacar(Fausto.Defese)
             Fausto.Life -= dano
-            println("[${Monster.name}] causou ${dano} de dano ao heroi.]")
+            println("[${Monster.name}] causou ${dano} de dano ao heroi.")
+
             if (Fausto.Life < 0){
                 Fausto.Alive = false
                 println("[FAUSTO PERDEU A LUTA...]")

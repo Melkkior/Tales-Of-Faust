@@ -5,10 +5,10 @@ import Faust.Armors.Armor
 class Faust {
     public var Alive = true
     public var Level = 1
-    public var Life = 120
-    public var LifeTotal = 120
-    public var Defese = 14
-    public var Attack = 24
+    public var Life = 100
+    public var LifeTotal = 100
+    public var Defese = 8
+    public var Attack = 20
     public var XP = 0
     public var XPtotal = 100
     public var Gold = 0
@@ -31,7 +31,7 @@ class Faust {
         Level++
         XP = 0
         XPtotal = (100 * 1.5).toInt()
-        LifeTotal = 120 + ((Level - 1) * 35)
+        LifeTotal = 100 + ((Level - 1) * 35)
         Life = LifeTotal
         Defese = 14 + ((Level - 1) * 3)
         Attack = 24 + ((Level - 1) * 6)
