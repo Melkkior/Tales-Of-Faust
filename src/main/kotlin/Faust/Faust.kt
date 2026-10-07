@@ -1,6 +1,5 @@
 package Faust
 import Faust.Swords.Sword
-import Faust.Armors.Armor
 
 class Faust {
     public var Alive = true
@@ -13,7 +12,6 @@ class Faust {
     public var XPtotal = 100
     public var Gold = 0
     public var Sword = Sword()
-    public var Armor = Armor()
 
     fun Atacar(DefM: Int): Int{
         return Attack - DefM

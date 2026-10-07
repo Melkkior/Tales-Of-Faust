@@ -59,119 +59,198 @@ fun main() {
             }
         }
     }
-        var num = Random.nextInt(1,5)
-        var Monster: Monster? = null
-        when(nivelDungeon){
-            1->{
-                when (num)
-                {
-                    1 -> {Monster = FadaGelo()}
-                    2 -> {Monster = Corvo()}
-                    3 -> {Monster = goblin()}
-                    4 -> {Monster = Slime()}
-                    5 -> {Monster = Prinny()}
-                }
-            }
-            2->{
-                when (num)
-                {
-                    1 -> {Monster = Lobo()}
-                    2 -> {Monster = Fantasma()}
-                    3 -> {Monster = Sacerdotisa()}
-                    4 -> {Monster = Bruxa()}
-                    5 -> {Monster = Esqueleto()}
-                }
-            }
-            3->{
-                when (num)
-                {
-                    1 -> {Monster = China()}
-                    2 -> {Monster = Bibliotecaria()}
-                    3 -> {Monster = Princesa()}
-                    4 -> {Monster = Principe()}
-                    5 -> {Monster = Tubarao()}
-                }
-            }
-            4->{
-                when (num)
-                {
-                    1 -> {Monster = Valkyria()}
-                    2 -> {Monster = Golem()}
-                    3 -> {Monster = Cultista()}
-                    4 -> {Monster = Oni()}
-                    5 -> {Monster = Empregada()}
-                }
-            }
-            5->{
-                when (num)
-                {
-                    1 -> {Monster = Tepes()}
-                    2 -> {Monster = Vampira()}
-                    3 -> {Monster = Marte()}
-                    4 -> {Monster = Rei()}
-                    5 -> {Monster = Hydra()}
-                }
-            }
-        }
-
-        val monstro = Monster ?: throw IllegalStateException("Monstro não foi inicializado")
-        var decisao = 0
-
-        println("[${Monster.name}] apareceu!")
-        while(Fausto.Alive == true && Monster.Alive == true){
-            println("[${Monster.name}'s life] -> ${Monster.life}/${Monster.lifeTotal}")
-            println("[FAUSTO's life] -> ${Fausto.Life}/${Fausto.LifeTotal}")
-            println("O que [FAUSTO] fará?")
-            println("[1] Atacar;\n[2] Curar;")
-            decisao = readLine()!!.toInt()
-            when (decisao) {
+        var tes = Random.nextInt(1,10)
+        if(tes <= 7) {
+            var num = Random.nextInt(1, 5)
+            var Monster: Monster? = null
+            when (nivelDungeon) {
                 1 -> {
-                    val dano = Fausto.Atacar(Monster.defense)
-                    Monster.life -= dano
-                    println("[FAUSTO] atacou [${Monster.name}]!")
-                    println("[FAUSTO] causou ${dano} de dano ao monstro.")
+                    when (num) {
+                        1 -> {
+                            Monster = FadaGelo()
+                        }
+
+                        2 -> {
+                            Monster = Corvo()
+                        }
+
+                        3 -> {
+                            Monster = goblin()
+                        }
+
+                        4 -> {
+                            Monster = Slime()
+                        }
+
+                        5 -> {
+                            Monster = Prinny()
+                        }
+                    }
                 }
+
                 2 -> {
-                    if(Fausto.Life >= 100){
-                        println("[FAUSTO] já esta com a vida cheia!")
-                    } else{
-                        println("[FAUSTO] se curou!!")
-                        Fausto.Life += 45
-                        if(Fausto.Life >= 100){
-                            Fausto.Life = Fausto.Life - (Fausto.Life - Fausto.LifeTotal).toInt()
+                    when (num) {
+                        1 -> {
+                            Monster = Lobo()
+                        }
+
+                        2 -> {
+                            Monster = Fantasma()
+                        }
+
+                        3 -> {
+                            Monster = Sacerdotisa()
+                        }
+
+                        4 -> {
+                            Monster = Bruxa()
+                        }
+
+                        5 -> {
+                            Monster = Esqueleto()
+                        }
+                    }
+                }
+
+                3 -> {
+                    when (num) {
+                        1 -> {
+                            Monster = China()
+                        }
+
+                        2 -> {
+                            Monster = Bibliotecaria()
+                        }
+
+                        3 -> {
+                            Monster = Princesa()
+                        }
+
+                        4 -> {
+                            Monster = Principe()
+                        }
+
+                        5 -> {
+                            Monster = Tubarao()
+                        }
+                    }
+                }
+
+                4 -> {
+                    when (num) {
+                        1 -> {
+                            Monster = Valkyria()
+                        }
+
+                        2 -> {
+                            Monster = Golem()
+                        }
+
+                        3 -> {
+                            Monster = Cultista()
+                        }
+
+                        4 -> {
+                            Monster = Oni()
+                        }
+
+                        5 -> {
+                            Monster = Empregada()
+                        }
+                    }
+                }
+
+                5 -> {
+                    when (num) {
+                        1 -> {
+                            Monster = Tepes()
+                        }
+
+                        2 -> {
+                            Monster = Vampira()
+                        }
+
+                        3 -> {
+                            Monster = Marte()
+                        }
+
+                        4 -> {
+                            Monster = Rei()
+                        }
+
+                        5 -> {
+                            Monster = Hydra()
                         }
                     }
                 }
             }
-            if(Monster.life > 0){
-                println("[${Monster.name}] usou atacar!")
-                val dano = Monster.Atacar(Fausto.Defese)
-                Fausto.Life -= dano
-                println("[${Monster.name}] causou ${dano} de dano ao heroi.")
 
-                if (Fausto.Life < 0){
-                    Fausto.Alive = false
-                    println("[FAUSTO PERDEU A LUTA...]")
-                    println("{FIM DE JOGO}")
-                    exitProcess(0)
+            val monstro = Monster ?: throw IllegalStateException("Monster não foi inicializado")
+            var decisao = 0
+
+            println("[${Monster.name}] apareceu!")
+            while (Fausto.Alive == true && Monster.Alive == true) {
+                println("[${Monster.name}'s life] -> ${Monster.life}/${Monster.lifeTotal}")
+                println("[FAUSTO's life] -> ${Fausto.Life}/${Fausto.LifeTotal}")
+                println("O que [FAUSTO] fará?")
+                println("[1] Atacar;\n[2] Curar;")
+                decisao = readLine()!!.toInt()
+                when (decisao) {
+                    1 -> {
+                        val dano = Fausto.Atacar(Monster.defense)
+                        Monster.life -= dano
+                        println("[FAUSTO] atacou [${Monster.name}]!")
+                        println("[FAUSTO] causou ${dano} de dano ao monstro.")
+                    }
+
+                    2 -> {
+                        if (Fausto.Life >= 100) {
+                            println("[FAUSTO] já esta com a vida cheia!")
+                        } else {
+                            println("[FAUSTO] se curou!!")
+                            Fausto.Life += 45
+                            if (Fausto.Life >= 100) {
+                                Fausto.Life = Fausto.Life - (Fausto.Life - Fausto.LifeTotal).toInt()
+                            }
+                        }
+                    }
                 }
-            } else{
-                Monster.Alive = false
-                println("[FAUSTO] VENCEU A LUTA!!")
-                println("XP ganho -> ${Monster.xp}")
-                println("Ouro saqueado -> ${Monster.gold}")
-                Fausto.Evoluir(Monster.xp)
-                Fausto.saquear(Monster.gold)
+                if (Monster.life > 0) {
+                    println("[${Monster.name}] usou atacar!")
+                    val dano = Monster.Atacar(Fausto.Defese)
+                    Fausto.Life -= dano
+                    println("[${Monster.name}] causou ${dano} de dano ao heroi.")
 
-                if(Fausto.XP >= Fausto.XPtotal){
-                    println("[FAUSTO] SUBIU DE NIVEL!!!")
-                    Fausto.SubirDeNivel()
+                    if (Fausto.Life < 0) {
+                        Fausto.Alive = false
+                        println("[FAUSTO PERDEU A LUTA...]")
+                        println("{FIM DE JOGO}")
+                        exitProcess(0)
+                    }
+                } else {
+                    Monster.Alive = false
+                    println("[FAUSTO] VENCEU A LUTA!!")
+                    println("XP ganho -> ${Monster.xp}")
+                    println("Ouro saqueado -> ${Monster.gold}")
+                    Fausto.Evoluir(Monster.xp)
+                    Fausto.saquear(Monster.gold)
+
+                    if (Fausto.XP >= Fausto.XPtotal) {
+                        println("[FAUSTO] SUBIU DE NIVEL!!!")
+                        Fausto.SubirDeNivel()
+                    }
                 }
             }
+        } else {
+            println("[FAUSTO ENCONTROU UM TESOURO]")
+            var ouroR = Random.nextInt(30,300)
+            println("[FAUSTO] encontrou ${ouroR} de ouro.")
+            Fausto.Gold += ouroR
         }
 
         var rep = true
         while (rep == true){
+            println("O caminho para o proximo nivel esta livre!!!")
             println("Proxima decisão de [FAUSTO]?")
             var decisao01: Int
             if(proxNivel >= 5){
