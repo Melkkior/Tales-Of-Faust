@@ -2,10 +2,9 @@ package Faust.Swords.Sw
 
 import Faust.Swords.Sword
 
-class zweihander : Sword(
-    nome = "Zweihander",
-    attack = 10,
+class `Espada de Madeira` : Sword(
+    nome = "Espada de Madeira",
+    attack = 5,
     inventory = false,
     equiped = false
-) {
-}
+) {}

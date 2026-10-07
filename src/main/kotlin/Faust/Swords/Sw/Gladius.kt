@@ -1,4 +1,11 @@
 package Faust.Swords.Sw
 
-class Gladius {
+import Faust.Swords.Sword
+
+class Gladius : Sword(
+    nome = "Gladius",
+    attack = 6,
+    inventory = false,
+    equiped = false
+)  {
 }

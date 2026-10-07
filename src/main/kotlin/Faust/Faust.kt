@@ -1,5 +1,6 @@
 package Faust
 import Faust.Swords.Sword
+import Faust.Itens.Pocoes
 
 class Faust {
     public var Alive = true
@@ -11,7 +12,8 @@ class Faust {
     public var XP = 0
     public var XPtotal = 100
     public var Gold = 0
-    public var Sword = Sword()
+    public var swordList: MutableList<Sword?> = mutableListOf()
+    public var itensList: MutableList<Pocoes?> = mutableListOf()
 
     fun Atacar(DefM: Int): Int{
         return Attack - DefM

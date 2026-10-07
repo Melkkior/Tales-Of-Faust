@@ -1,5 +1,11 @@
 package Faust.Swords
 
-class Sword {
+abstract class Sword (
+    val nome: String,
+    val attack: Int,
+    var inventory: Boolean,
+    var equiped: Boolean
+)
+{
 
 }

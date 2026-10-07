@@ -27,12 +27,30 @@ import Monsters.`Nivel 5`.Marte
 import Monsters.`Nivel 5`.Rei
 import Monsters.`Nivel 5`.Tepes
 import Monsters.`Nivel 5`.Vampira
+import Faust.Itens.Pocoes
+import Faust.Swords.Sword
+import Faust.Swords.Sw.Gladius
+import Faust.Swords.Sw.`Espada de Madeira`
+import Faust.Swords.Sw.Gungnir
+import Faust.Swords.Sw.Katana
+import Faust.Swords.Sw.`Werther's Gun`
+import Faust.Swords.Sw.zweihander
+import Faust.Swords.Sw.`Siegfried's sword`
+import kotlin.contracts.SimpleEffect
+
 
 fun main() {
     var Fausto = Faust()
     var nivelDungeon = 1
     var proxNivel = 0
     var kk = true
+    var gladius = Gladius()
+    var madeira = `Espada de Madeira`()
+    var katana = Katana()
+    var gungnir = Gungnir()
+    var werther = `Werther's Gun`()
+    var zweihander = zweihander()
+    var siegfried = `Siegfried's sword`()
 
     while (true){
     if(kk == true){
@@ -60,7 +78,7 @@ fun main() {
         }
     }
         var tes = Random.nextInt(1,10)
-        if(tes <= 7) {
+        if(tes <= 2) {
             var num = Random.nextInt(1, 5)
             var Monster: Monster? = null
             when (nivelDungeon) {
@@ -246,11 +264,43 @@ fun main() {
             var ouroR = Random.nextInt(30,300)
             println("[FAUSTO] encontrou ${ouroR} de ouro.")
             Fausto.Gold += ouroR
-        }
+            var sran = Random.nextInt(1,100)
+            when (sran){
+                in 1..40 -> {
+                    if(madeira.inventory == false) {
+                        madeira.inventory = true
+                        Fausto.swordList.add(gladius)
+                        println("[FAUSTO ACHOU ${madeira.nome}]")
+                    }
+                }
+                in 41..70 -> {
+                    if(gladius.inventory == false) {
+                        gladius.inventory = true
+                        Fausto.swordList.add(gladius)
+                        println("[FAUSTO ACHOU ${gladius.nome}]")
+                    }
+                }
+                in 71..90 -> {
+                    if(siegfried.inventory == false) {
+                        siegfried.inventory = true
+                        Fausto.swordList.add(siegfried)
+                        println("[FAUSTO ACHOU ${siegfried.nome}]")
+                    }
+                }
+                in 91..100 -> {
+                    if(zweihander.inventory == false) {
+                        zweihander.inventory = true
+                        Fausto.swordList.add(zweihander)
+                        println("[FAUSTO ACHOU ${zweihander.nome}]")
+                    }
+                }
 
+            }
+        }
+        println("O caminho para o proximo nivel esta livre!!!")
+        println("[~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]")
         var rep = true
         while (rep == true){
-            println("O caminho para o proximo nivel esta livre!!!")
             println("Proxima decisão de [FAUSTO]?")
             var decisao01: Int
             if(proxNivel >= 5){
@@ -277,6 +327,9 @@ fun main() {
                         println("[Fausto's life] -> ${Fausto.Life}/${Fausto.LifeTotal}")
                         println("[Fausto's xp] -> ${Fausto.XP}/${Fausto.XPtotal}")
                         println("[Fausto's gold] -> ${Fausto.Gold}")
+                        for (i in Fausto.swordList){
+                            println("-${i?.nome}")
+                        }
                     }
                 }
             } else {
@@ -296,6 +349,10 @@ fun main() {
                         println("[Fausto's life] -> ${Fausto.Life}/${Fausto.LifeTotal}")
                         println("[Fausto's xp] -> ${Fausto.XP}/${Fausto.XPtotal}")
                         println("[Fausto's gold] -> ${Fausto.Gold}")
+                        println("[Fausto's swords]")
+                        for (i in Fausto.swordList){
+                            println("-${i?.nome}")
+                        }
                     }
                 }
             }

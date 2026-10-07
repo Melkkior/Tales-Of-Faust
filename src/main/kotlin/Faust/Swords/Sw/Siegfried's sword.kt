@@ -1,4 +1,11 @@
 package Faust.Swords.Sw
 
-class `Siegfried's sword` {
+import Faust.Swords.Sword
+
+class `Siegfried's sword` : Sword(
+    nome = "Siegfried's sword",
+    attack = 8,
+    inventory = false,
+    equiped = false
+) {
 }
