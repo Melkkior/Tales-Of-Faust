@@ -6,6 +6,7 @@ class zweihander : Sword(
     nome = "Zweihander",
     attack = 10,
     inventory = false,
-    equiped = false
+    equiped = false,
+    equipLevel = 5
 ) {
 }

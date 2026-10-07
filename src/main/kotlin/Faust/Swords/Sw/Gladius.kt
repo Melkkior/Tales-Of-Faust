@@ -6,6 +6,7 @@ class Gladius : Sword(
     nome = "Gladius",
     attack = 6,
     inventory = false,
-    equiped = false
+    equiped = false,
+    equipLevel = 2
 )  {
 }

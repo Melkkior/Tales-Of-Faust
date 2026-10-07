@@ -28,6 +28,9 @@ import Monsters.`Nivel 5`.Rei
 import Monsters.`Nivel 5`.Tepes
 import Monsters.`Nivel 5`.Vampira
 import Faust.Itens.Pocoes
+import Faust.Itens.Poc.Bratwurst
+import Faust.Itens.Poc.`Fruta Vermelha`
+import Faust.Itens.Poc.Vinho
 import Faust.Swords.Sword
 import Faust.Swords.Sw.Gladius
 import Faust.Swords.Sw.`Espada de Madeira`
@@ -51,6 +54,9 @@ fun main() {
     var werther = `Werther's Gun`()
     var zweihander = zweihander()
     var siegfried = `Siegfried's sword`()
+    var fruta = `Fruta Vermelha`()
+    var bratwurst = Bratwurst()
+    var vinho = Vinho()
 
     while (true){
     if(kk == true){
@@ -296,6 +302,36 @@ fun main() {
                 }
 
             }
+            var pran = Random.nextInt(1,100)
+            when (pran) {
+                in 1..50 -> {
+                    var qntran = Random.nextInt(1,10)
+                    if(fruta.inventory == false) {
+                        fruta.inventory = true
+                        fruta.qnt += qntran
+                        Fausto.itensList.add(fruta)
+                        println("[FAUSTO ACHOU $qntran ${fruta.nome}s]")
+                    }
+                }
+                in 51..70 -> {
+                    var qntran = Random.nextInt(1,10)
+                    if(bratwurst.inventory == false) {
+                        bratwurst.inventory = true
+                        bratwurst.qnt += qntran
+                        Fausto.itensList.add(bratwurst)
+                        println("[FAUSTO ACHOU $qntran ${bratwurst.nome}s]")
+                    }
+                }
+                in 71..100 -> {
+                    var qntran = Random.nextInt(1,10)
+                    if(vinho.inventory == false) {
+                        vinho.inventory = true
+                        vinho.qnt += qntran
+                        Fausto.itensList.add(vinho)
+                        println("[FAUSTO ACHOU $qntran ${vinho.nome}s]")
+                    }
+                }
+            }
         }
         println("O caminho para o proximo nivel esta livre!!!")
         println("[~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]")
@@ -327,8 +363,13 @@ fun main() {
                         println("[Fausto's life] -> ${Fausto.Life}/${Fausto.LifeTotal}")
                         println("[Fausto's xp] -> ${Fausto.XP}/${Fausto.XPtotal}")
                         println("[Fausto's gold] -> ${Fausto.Gold}")
+                        println("[Fausto's swords]")
                         for (i in Fausto.swordList){
                             println("-${i?.nome}")
+                        }
+                        println("[Fausto's poções]")
+                        for (i in Fausto.itensList){
+                            println("-${i?.nome} [${i?.qnt}]")
                         }
                     }
                 }
@@ -352,6 +393,10 @@ fun main() {
                         println("[Fausto's swords]")
                         for (i in Fausto.swordList){
                             println("-${i?.nome}")
+                        }
+                        println("[Fausto's poções]")
+                        for (i in Fausto.itensList){
+                            println("-${i?.nome} [${i?.qnt}]")
                         }
                     }
                 }

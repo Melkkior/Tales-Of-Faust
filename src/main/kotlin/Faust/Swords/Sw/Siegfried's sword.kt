@@ -6,6 +6,7 @@ class `Siegfried's sword` : Sword(
     nome = "Siegfried's sword",
     attack = 8,
     inventory = false,
-    equiped = false
+    equiped = false,
+    equipLevel = 4
 ) {
 }

@@ -1,5 +1,11 @@
 package Faust.Itens
 
-class Pocoes {
+abstract class Pocoes(
+    val nome: String,
+    val heal: Int,
+    var qnt: Int,
+    var inventory: Boolean
+)
+{
 
 }

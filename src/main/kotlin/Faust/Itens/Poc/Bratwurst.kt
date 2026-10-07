@@ -1,4 +1,11 @@
 package Faust.Itens.Poc
 
-class Bratwurst {
+import Faust.Itens.Pocoes
+
+class Bratwurst : Pocoes (
+    nome = "Bratwurst",
+    heal = 60,
+    qnt = 0,
+    inventory = false
+) {
 }
