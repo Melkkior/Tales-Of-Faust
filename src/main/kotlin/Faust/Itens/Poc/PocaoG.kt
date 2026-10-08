@@ -1,4 +1,11 @@
 package Faust.Itens.Poc
 
-class PocaoG {
+import Faust.Itens.Pocoes
+
+class PocaoG : Pocoes (
+    nome = "Poção grande",
+    heal = 100,
+    qnt = 0,
+    inventory = false
+) {
 }

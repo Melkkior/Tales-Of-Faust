@@ -31,6 +31,9 @@ import Faust.Itens.Pocoes
 import Faust.Itens.Poc.Bratwurst
 import Faust.Itens.Poc.`Fruta Vermelha`
 import Faust.Itens.Poc.Vinho
+import Faust.Itens.Poc.PocaoP
+import Faust.Itens.Poc.PocaoG
+import Faust.Itens.Poc.PocaoM
 import Faust.Swords.Sword
 import Faust.Swords.Sw.Gladius
 import Faust.Swords.Sw.`Espada de Madeira`
@@ -57,34 +60,40 @@ fun main() {
     var fruta = `Fruta Vermelha`()
     var bratwurst = Bratwurst()
     var vinho = Vinho()
+    var pocaop = PocaoP()
+    var pocaom = PocaoM()
+    var pocaog = PocaoG()
+    while (true) {
+        if (kk == true) {
+            when (nivelDungeon) {
+                1 -> {
+                    println("[DUNGEON NV01] OS SOFRIMENTOS DO JOVEM WERTHER")
+                    kk = false
+                }
 
-    while (true){
-    if(kk == true){
-        when (nivelDungeon){
-            1 -> {
-                println("[DUNGEON NV01] OS SOFRIMENTOS DO JOVEM WERTHER")
-                kk = false
-            }
-            2 -> {
-                println("[DUNGEON NV02] AFINIDADES ELETIVAS")
-                kk = false
-            }
-            3 -> {
-                println("[DUNGEON NV03] TRILOGIA DA PAIXÃO")
-                kk = false
-            }
-            4 -> {
-                println("[DUNGEON NV04] OS ANOS DE APRENDIZADO DE WILHELM MEISTER")
-                kk = false
-            }
-            5 -> {
-                println("[DUNGEON NV05] FAUSTO")
-                kk = false
+                2 -> {
+                    println("[DUNGEON NV02] AFINIDADES ELETIVAS")
+                    kk = false
+                }
+
+                3 -> {
+                    println("[DUNGEON NV03] TRILOGIA DA PAIXÃO")
+                    kk = false
+                }
+
+                4 -> {
+                    println("[DUNGEON NV04] OS ANOS DE APRENDIZADO DE WILHELM MEISTER")
+                    kk = false
+                }
+
+                5 -> {
+                    println("[DUNGEON NV05] FAUSTO")
+                    kk = false
+                }
             }
         }
-    }
-        var tes = Random.nextInt(1,10)
-        if(tes <= 2) {
+        var tes = Random.nextInt(1, 10)
+        if (tes <= 2) {
             var num = Random.nextInt(1, 5)
             var Monster: Monster? = null
             when (nivelDungeon) {
@@ -219,24 +228,30 @@ fun main() {
                 println("O que [FAUSTO] fará?")
                 println("[1] Atacar;\n[2] Curar;")
                 decisao = readLine()!!.toInt()
-                when (decisao) {
-                    1 -> {
-                        val dano = Fausto.Atacar(Monster.defense)
-                        Monster.life -= dano
-                        println("[FAUSTO] atacou [${Monster.name}]!")
-                        println("[FAUSTO] causou ${dano} de dano ao monstro.")
-                    }
-
-                    2 -> {
-                        if (Fausto.Life >= 100) {
-                            println("[FAUSTO] já esta com a vida cheia!")
-                        } else {
-                            println("[FAUSTO] se curou!!")
-                            Fausto.Life += 45
-                            if (Fausto.Life >= 100) {
-                                Fausto.Life = Fausto.Life - (Fausto.Life - Fausto.LifeTotal).toInt()
-                            }
+                var repA = true
+                while (repA) {
+                    when (decisao) {
+                        1 -> {
+                            val dano = Fausto.Atacar(Monster.defense)
+                            Monster.life -= dano
+                            println("[FAUSTO] atacou [${Monster.name}]!")
+                            println("[FAUSTO] causou ${dano} de dano ao monstro.")
+                            repA = false
                         }
+
+                        2 -> {
+                            if (Fausto.Life >= 100) {
+                                println("[FAUSTO] já esta com a vida cheia!")
+                            } else {
+                                println("[FAUSTO] se curou!!")
+                                Fausto.Life += 45
+                                if (Fausto.Life >= 100) {
+                                    Fausto.Life = Fausto.Life - (Fausto.Life - Fausto.LifeTotal).toInt()
+                                }
+                            }
+                            repA = false
+                        }
+                        else -> println("Ação invalida.")
                     }
                 }
                 if (Monster.life > 0) {
@@ -267,34 +282,37 @@ fun main() {
             }
         } else {
             println("[FAUSTO ENCONTROU UM TESOURO]")
-            var ouroR = Random.nextInt(30,300)
+            var ouroR = Random.nextInt(30, 300)
             println("[FAUSTO] encontrou ${ouroR} de ouro.")
             Fausto.Gold += ouroR
-            var sran = Random.nextInt(1,100)
-            when (sran){
+            var sran = Random.nextInt(1, 100)
+            when (sran) {
                 in 1..40 -> {
-                    if(madeira.inventory == false) {
+                    if (madeira.inventory == false) {
                         madeira.inventory = true
-                        Fausto.swordList.add(gladius)
+                        Fausto.swordList.add(madeira)
                         println("[FAUSTO ACHOU ${madeira.nome}]")
                     }
                 }
+
                 in 41..70 -> {
-                    if(gladius.inventory == false) {
+                    if (gladius.inventory == false) {
                         gladius.inventory = true
                         Fausto.swordList.add(gladius)
                         println("[FAUSTO ACHOU ${gladius.nome}]")
                     }
                 }
+
                 in 71..90 -> {
-                    if(siegfried.inventory == false) {
+                    if (siegfried.inventory == false) {
                         siegfried.inventory = true
                         Fausto.swordList.add(siegfried)
                         println("[FAUSTO ACHOU ${siegfried.nome}]")
                     }
                 }
+
                 in 91..100 -> {
-                    if(zweihander.inventory == false) {
+                    if (zweihander.inventory == false) {
                         zweihander.inventory = true
                         Fausto.swordList.add(zweihander)
                         println("[FAUSTO ACHOU ${zweihander.nome}]")
@@ -302,29 +320,31 @@ fun main() {
                 }
 
             }
-            var pran = Random.nextInt(1,100)
+            var pran = Random.nextInt(1, 100)
             when (pran) {
                 in 1..50 -> {
-                    var qntran = Random.nextInt(1,10)
-                    if(fruta.inventory == false) {
+                    var qntran = Random.nextInt(1, 10)
+                    if (fruta.inventory == false) {
                         fruta.inventory = true
                         fruta.qnt += qntran
                         Fausto.itensList.add(fruta)
                         println("[FAUSTO ACHOU $qntran ${fruta.nome}s]")
                     }
                 }
+
                 in 51..70 -> {
-                    var qntran = Random.nextInt(1,10)
-                    if(bratwurst.inventory == false) {
+                    var qntran = Random.nextInt(1, 10)
+                    if (bratwurst.inventory == false) {
                         bratwurst.inventory = true
                         bratwurst.qnt += qntran
                         Fausto.itensList.add(bratwurst)
                         println("[FAUSTO ACHOU $qntran ${bratwurst.nome}s]")
                     }
                 }
+
                 in 71..100 -> {
-                    var qntran = Random.nextInt(1,10)
-                    if(vinho.inventory == false) {
+                    var qntran = Random.nextInt(1, 10)
+                    if (vinho.inventory == false) {
                         vinho.inventory = true
                         vinho.qnt += qntran
                         Fausto.itensList.add(vinho)
@@ -336,54 +356,337 @@ fun main() {
         println("O caminho para o proximo nivel esta livre!!!")
         println("[~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]")
         var rep = true
-        while (rep == true){
+        while (rep == true) {
             println("Proxima decisão de [FAUSTO]?")
             var decisao01: Int
-            if(proxNivel >= 5){
+            if (proxNivel >= 5) {
                 println("[1] prosseguir para a proxima sala.")
                 println("[2] Ir ao proximo nivel da dungeon")
                 println("[3] Ir a loja.")
                 println("[4] Conferir status")
+                println("[5] Inventario de armas")
+                println("[6] Inventario de poções")
                 decisao01 = readLine()!!.toInt()
                 when (decisao01) {
                     1 -> {
                         proxNivel++
                         rep = false
                     }
+
                     2 -> {
                         nivelDungeon++
                         proxNivel = 0
                         rep = false
                         kk = true
                     }
-                    3 -> println("Alternativa indisponivel no momento")
+
+                    3 -> {
+                        println("[Bem vindo à loja do vendedor Schiller!]")
+                        println("1 - conferir lista de armas.\n2 - conferir lista de poções.\n3 - sair da loja.")
+                        var res = readLine()?.toInt()
+                        when(res) {
+                            1 -> {
+                                println("[Lista de espadas]")
+                                println("1 - ${katana.nome} {$100}")
+                                println("2 - ${gungnir.nome} {$250}")
+                                println("3 - ${werther.nome} {$400}")
+                                println("O que deseja comprar?")
+                                var resS = readLine()?.toInt()
+                                when (resS){
+                                    1 -> {
+                                        if (Fausto.Gold >= 100) {
+                                            println("[FAUSTO] comprou [${katana.nome}]!")
+                                            Fausto.swordList.add(katana)
+                                        } else {
+                                            println("Dinheiro insuficiente.")
+                                        }
+                                    }
+                                    2 -> {
+                                        if (Fausto.Gold >= 250) {
+                                            println("[FAUSTO] comprou [${gungnir.nome}]!")
+                                            Fausto.swordList.add(gungnir)
+                                        } else {
+                                            println("Dinheiro insuficiente.")
+                                        }
+                                    }
+                                    3 -> {
+                                        if (Fausto.Gold >= 400) {
+                                            println("[FAUSTO] comprou [${werther.nome}]!")
+                                            Fausto.swordList.add(werther)
+                                        } else {
+                                            println("Dinheiro insuficiente.")
+                                        }
+                                    }
+                                    else -> println("Saindo da loja")
+                                }
+                            }
+                            2 -> {
+                                println("[Lista de Poções]")
+                                println("1 - ${pocaop.nome} {$30}")
+                                println("2 - ${pocaom.nome} {$60}")
+                                println("3 - ${pocaog.nome} {$90}")
+                                println("[O que vai comprar?]")
+                                var resP = readLine()?.toInt()
+                                when (resP){
+                                    1 -> {
+                                        println("[Quantas deseja comprar?]")
+                                        var pop = true
+                                        while (pop) {
+                                            val resV = readLine()?.toIntOrNull()
+                                            if (resV == null || resV <= 0) {
+                                                println("Insira uma quantidade válida.")
+                                                continue
+                                            }
+                                            val valorTotal = 30 * resV
+                                            if (Fausto.Gold >= valorTotal) {
+                                                println("[FAUSTO] comprou $resV [${pocaop.nome}]!")
+                                                if(pocaop.inventory != true){
+                                                    Fausto.itensList.add(pocaop)
+                                                    pocaop.qnt += resV
+                                                } else {
+                                                    pocaop.qnt += resV
+                                                }
+                                                Fausto.Gold -= valorTotal
+                                                pop = false
+                                            } else {
+                                                println("Dinheiro insuficiente.")
+                                                pop = false
+                                            }
+                                        }
+                                    }
+                                    2 -> {
+                                        println("[Quantas deseja comprar?]")
+                                        var pop = true
+                                        while (pop) {
+                                            val resV = readLine()?.toIntOrNull()
+                                            if (resV == null || resV <= 0) {
+                                                println("Insira uma quantidade válida.")
+                                                continue
+                                            }
+                                            val valorTotal = 60 * resV
+                                            if (Fausto.Gold >= valorTotal) {
+                                                println("[FAUSTO] comprou $resV [${pocaom.nome}]!")
+                                                if(pocaop.inventory != true){
+                                                    Fausto.itensList.add(pocaom)
+                                                    pocaom.qnt += resV
+                                                } else {
+                                                    pocaom.qnt += resV
+                                                }
+                                                Fausto.Gold -= valorTotal
+                                                pop = false
+                                            } else {
+                                                println("Dinheiro insuficiente.")
+                                                pop = false
+                                            }
+                                        }
+                                    }
+                                    3 -> {
+                                        println("[Quantas deseja comprar?]")
+                                        var pop = true
+                                        while (pop) {
+                                            val resV = readLine()?.toIntOrNull()
+                                            if (resV == null || resV <= 0) {
+                                                println("Insira uma quantidade válida.")
+                                                continue
+                                            }
+                                            val valorTotal = 90 * resV
+                                            if (Fausto.Gold >= valorTotal) {
+                                                println("[FAUSTO] comprou $resV [${pocaog.nome}]!")
+                                                if(pocaop.inventory != true){
+                                                    Fausto.itensList.add(pocaog)
+                                                    pocaog.qnt += resV
+                                                } else {
+                                                    pocaog.qnt += resV
+                                                }
+                                                Fausto.Gold -= valorTotal
+                                                pop = false
+                                            } else {
+                                                println("Dinheiro insuficiente.")
+                                                pop = false
+                                            }
+                                        }
+                                    }
+                                    else -> println("Saindo da loja")
+                                }
+                            }
+                            else -> println("Saindo da loja.")
+                        }
+                    }
                     4 -> {
                         println("[Fausto's status]")
                         println("[Fausto's Level] -> ${Fausto.Level}")
                         println("[Fausto's life] -> ${Fausto.Life}/${Fausto.LifeTotal}")
                         println("[Fausto's xp] -> ${Fausto.XP}/${Fausto.XPtotal}")
                         println("[Fausto's gold] -> ${Fausto.Gold}")
-                        println("[Fausto's swords]")
-                        for (i in Fausto.swordList){
+                    }
+
+                    5 -> {println("[Fausto's swords]")
+                        for (i in Fausto.swordList) {
+
                             println("-${i?.nome}")
                         }
+                    }
+
+                    6 -> {
                         println("[Fausto's poções]")
-                        for (i in Fausto.itensList){
+                        for (i in Fausto.itensList) {
                             println("-${i?.nome} [${i?.qnt}]")
                         }
+                    }
+
+                    else -> {
+                        println("Comando invalido")
                     }
                 }
             } else {
                 println("[1] prosseguir para a proxima sala")
                 println("[2] Ir a loja.")
                 println("[3] Conferir status")
+                println("[4] Inventario de armas")
+                println("[5] Inventario de poções")
                 decisao01 = readLine()!!.toInt()
                 when (decisao01) {
                     1 -> {
                         proxNivel++
                         rep = false
                     }
-                    2 -> println("Alternativa indisponivel no momento")
+
+                    2 -> {
+                        println("[Bem vindo à loja do vendedor Schiller!]")
+                        println("1 - conferir lista de armas.\n2 - conferir lista de poções.\n3 - sair da loja.")
+                        var res = readLine()?.toInt()
+                        when(res) {
+                            1 -> {
+                                println("[Lista de espadas]")
+                                println("1 - ${katana.nome} {$100}")
+                                println("2 - ${gungnir.nome} {$250}")
+                                println("3 - ${werther.nome} {$400}")
+                                println("O que deseja comprar?")
+                                var resS = readLine()?.toInt()
+                                when (resS){
+                                    1 -> {
+                                        if (Fausto.Gold >= 100) {
+                                            println("[FAUSTO] comprou [${katana.nome}]!")
+                                            Fausto.swordList.add(katana)
+                                            Fausto.Gold -= 100
+                                        } else {
+                                            println("Dinheiro insuficiente.")
+                                        }
+                                    }
+                                    2 -> {
+                                        if (Fausto.Gold >= 250) {
+                                            println("[FAUSTO] comprou [${gungnir.nome}]!")
+                                            Fausto.swordList.add(gungnir)
+                                            Fausto.Gold -= 250
+                                        } else {
+                                            println("Dinheiro insuficiente.")
+                                        }
+                                    }
+                                    3 -> {
+                                        if (Fausto.Gold >= 400) {
+                                            println("[FAUSTO] comprou [${werther.nome}]!")
+                                            Fausto.swordList.add(werther)
+                                            Fausto.Gold -= 400
+                                        } else {
+                                            println("Dinheiro insuficiente.")
+                                        }
+                                    }
+                                    else -> println("Saindo da loja")
+                                }
+                            }
+                            2 -> {
+                                println("[Lista de Poções]")
+                                println("1 - ${pocaop.nome} {$30}")
+                                println("2 - ${pocaom.nome} {$60}")
+                                println("3 - ${pocaog.nome} {$90}")
+                                println("[O que vai comprar?]")
+                                var resP = readLine()?.toInt()
+                                when (resP){
+                                    1 -> {
+                                        println("[Quantas deseja comprar?]")
+                                        var pop = true
+                                        while (pop) {
+                                            val resV = readLine()?.toIntOrNull()
+                                            if (resV == null || resV <= 0) {
+                                                println("Insira uma quantidade válida.")
+                                                continue
+                                            }
+                                            val valorTotal = 30 * resV
+                                            if (Fausto.Gold >= valorTotal) {
+                                                println("[FAUSTO] comprou $resV [${pocaop.nome}]!")
+                                                if(pocaop.inventory != true){
+                                                    Fausto.itensList.add(pocaop)
+                                                    pocaop.qnt += resV
+                                                } else {
+                                                    pocaop.qnt += resV
+                                                }
+
+                                                Fausto.Gold -= valorTotal
+                                                pop = false
+                                            } else {
+                                                println("Dinheiro insuficiente.")
+                                                pop = false
+                                            }
+                                        }
+                                    }
+                                    2 -> {
+                                        println("[Quantas deseja comprar?]")
+                                        var pop = true
+                                        while (pop) {
+                                            val resV = readLine()?.toIntOrNull()
+                                            if (resV == null || resV <= 0) {
+                                                println("Insira uma quantidade válida.")
+                                                continue
+                                            }
+                                            val valorTotal = 60 * resV
+                                            if (Fausto.Gold >= valorTotal) {
+                                                println("[FAUSTO] comprou $resV [${pocaom.nome}]!")
+                                                if(pocaop.inventory != true){
+                                                    Fausto.itensList.add(pocaom)
+                                                    pocaom.qnt += resV
+                                                } else {
+                                                    pocaom.qnt += resV
+                                                }
+                                                Fausto.Gold -= valorTotal
+                                                pop = false
+                                            } else {
+                                                println("Dinheiro insuficiente.")
+                                                pop = false
+                                            }
+                                        }
+                                    }
+                                    3 -> {
+                                        println("[Quantas deseja comprar?]")
+                                        var pop = true
+                                        while (pop) {
+                                            val resV = readLine()?.toIntOrNull()
+                                            if (resV == null || resV <= 0) {
+                                                println("Insira uma quantidade válida.")
+                                                continue
+                                            }
+                                            val valorTotal = 90 * resV
+                                            if (Fausto.Gold >= valorTotal) {
+                                                println("[FAUSTO] comprou $resV [${pocaog.nome}]!")
+                                                if(pocaop.inventory != true){
+                                                    Fausto.itensList.add(pocaog)
+                                                    pocaog.qnt += resV
+                                                } else {
+                                                    pocaog.qnt += resV
+                                                }
+                                                Fausto.Gold -= valorTotal
+                                                pop = false
+                                            } else {
+                                                println("Dinheiro insuficiente.")
+                                                pop = false
+                                            }
+                                        }
+                                    }
+                                    else -> println("Saindo da loja")
+                                }
+                            }
+                            else -> println("Saindo da loja.")
+                        }
+                    }
                     3 -> {
                         println("[Fausto's status]")
                         println("[Fausto's Level] -> ${Fausto.Level}")
@@ -391,19 +694,37 @@ fun main() {
                         println("[Fausto's xp] -> ${Fausto.XP}/${Fausto.XPtotal}")
                         println("[Fausto's gold] -> ${Fausto.Gold}")
                         println("[Fausto's swords]")
-                        for (i in Fausto.swordList){
-                            println("-${i?.nome}")
+                    }
+
+                    4 -> {
+                        var n = 1
+                        println("[Fausto's swords]")
+                        for (i in Fausto.swordList) {
+                            if(i?.equiped == true){
+                                println("$n - ${i?.nome} [EQUIPPED]")
+                                n++
+                            } else {
+                                println("$n - ${i?.nome}")
+                                n++
+                            }
                         }
+                    }
+                    5 -> {
+                        var n = 1
                         println("[Fausto's poções]")
-                        for (i in Fausto.itensList){
-                            println("-${i?.nome} [${i?.qnt}]")
+                        for (i in Fausto.itensList) {
+                            println("$n - ${i?.nome} [${i?.qnt}]")
+                            n++
                         }
+                    }
+
+                    else -> {
+                        println("Comando invalido")
                     }
                 }
             }
         }
     }
-
 
 
 }
