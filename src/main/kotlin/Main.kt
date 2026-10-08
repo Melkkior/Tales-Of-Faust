@@ -63,6 +63,10 @@ fun main() {
     var pocaop = PocaoP()
     var pocaom = PocaoM()
     var pocaog = PocaoG()
+
+
+
+
     while (true) {
         if (kk == true) {
             when (nivelDungeon) {
@@ -220,7 +224,12 @@ fun main() {
 
             val monstro = Monster ?: throw IllegalStateException("Monster não foi inicializado")
             var decisao = 0
-
+            var danoE = 0
+            for (i in Fausto.swordList){
+                if(i?.equiped == true){
+                    danoE = i.attack
+                }
+            }
             println("[${Monster.name}] apareceu!")
             while (Fausto.Alive == true && Monster.Alive == true) {
                 println("[${Monster.name}'s life] -> ${Monster.life}/${Monster.lifeTotal}")
@@ -232,7 +241,7 @@ fun main() {
                 while (repA) {
                     when (decisao) {
                         1 -> {
-                            val dano = Fausto.Atacar(Monster.defense)
+                            val dano = Fausto.Atacar(Monster.defense) + danoE
                             Monster.life -= dano
                             println("[FAUSTO] atacou [${Monster.name}]!")
                             println("[FAUSTO] causou ${dano} de dano ao monstro.")
@@ -372,14 +381,12 @@ fun main() {
                         proxNivel++
                         rep = false
                     }
-
                     2 -> {
                         nivelDungeon++
                         proxNivel = 0
                         rep = false
                         kk = true
                     }
-
                     3 -> {
                         println("[Bem vindo à loja do vendedor Schiller!]")
                         println("1 - conferir lista de armas.\n2 - conferir lista de poções.\n3 - sair da loja.")
@@ -519,21 +526,38 @@ fun main() {
                         println("[Fausto's xp] -> ${Fausto.XP}/${Fausto.XPtotal}")
                         println("[Fausto's gold] -> ${Fausto.Gold}")
                     }
-
-                    5 -> {println("[Fausto's swords]")
+                    5 -> {
+                        var n = 1
+                        println("[Fausto's swords]")
                         for (i in Fausto.swordList) {
-
-                            println("-${i?.nome}")
+                            if(i?.equiped == true){
+                                println("$n - ${i?.nome} [EQUIPPED]")
+                                n++
+                            } else {
+                                println("$n - ${i?.nome}")
+                                n++
+                            }
                         }
+                        println("[Digite 0 para sair]")
+                        println("Deseja equipar qual arma?")
+                        val resV = readLine()?.toIntOrNull()
+                        if (resV == null || resV <= 0) {
+                            println("Insira um valor válido.")
+                            continue
+                        }
+                        for (i in Fausto.swordList){
+                            i?.equiped = false
+                        }
+                        var t = resV - 1
+                        Fausto.swordList[t]?.equiped = true;
+                        println("[FAUSTO] equipou [${Fausto.swordList[t]?.nome}]")
                     }
-
                     6 -> {
                         println("[Fausto's poções]")
                         for (i in Fausto.itensList) {
                             println("-${i?.nome} [${i?.qnt}]")
                         }
                     }
-
                     else -> {
                         println("Comando invalido")
                     }
@@ -550,7 +574,6 @@ fun main() {
                         proxNivel++
                         rep = false
                     }
-
                     2 -> {
                         println("[Bem vindo à loja do vendedor Schiller!]")
                         println("1 - conferir lista de armas.\n2 - conferir lista de poções.\n3 - sair da loja.")
@@ -695,7 +718,6 @@ fun main() {
                         println("[Fausto's gold] -> ${Fausto.Gold}")
                         println("[Fausto's swords]")
                     }
-
                     4 -> {
                         var n = 1
                         println("[Fausto's swords]")
@@ -708,6 +730,19 @@ fun main() {
                                 n++
                             }
                         }
+                        println("[Digite 0 para sair]")
+                        println("Deseja equipar qual arma?")
+                        val resV = readLine()?.toIntOrNull()
+                        if (resV == null || resV <= 0) {
+                            println("Insira um valor válido.")
+                            continue
+                        }
+                        for (i in Fausto.swordList){
+                            i?.equiped = false
+                        }
+                        var t = resV - 1
+                        Fausto.swordList[t]?.equiped = true;
+                        println("[FAUSTO] equipou [${Fausto.swordList[t]?.nome}]")
                     }
                     5 -> {
                         var n = 1
@@ -717,7 +752,6 @@ fun main() {
                             n++
                         }
                     }
-
                     else -> {
                         println("Comando invalido")
                     }
@@ -725,6 +759,4 @@ fun main() {
             }
         }
     }
-
-
 }

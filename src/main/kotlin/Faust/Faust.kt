@@ -4,7 +4,7 @@ import Faust.Itens.Pocoes
 
 class Faust {
     public var Alive = true
-    public var Level = 1
+    public var Level = 5
     public var Life = 100
     public var LifeTotal = 100
     public var Defese = 8
