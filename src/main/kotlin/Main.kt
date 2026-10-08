@@ -97,7 +97,7 @@ fun main() {
             }
         }
         var tes = Random.nextInt(1, 10)
-        if (tes <= 2) {
+        if (tes <= 7) {
             var num = Random.nextInt(1, 5)
             var Monster: Monster? = null
             when (nivelDungeon) {
@@ -249,16 +249,33 @@ fun main() {
                         }
 
                         2 -> {
-                            if (Fausto.Life >= 100) {
-                                println("[FAUSTO] já esta com a vida cheia!")
+                            var n = 1
+                            if (Fausto.itensList.isEmpty()) {
+                                println("[FAUSTO] não tem nenhuma poção.")
                             } else {
-                                println("[FAUSTO] se curou!!")
-                                Fausto.Life += 45
-                                if (Fausto.Life >= 100) {
-                                    Fausto.Life = Fausto.Life - (Fausto.Life - Fausto.LifeTotal).toInt()
+                                println("[Fausto's poções]")
+                                for (i in Fausto.itensList) {
+                                    println("$n - ${i?.nome} [${i?.qnt}]")
+                                    n++
                                 }
+                                println("[Usar qual item de cura?]")
+                                val resV = readLine()?.toIntOrNull()
+                                if (resV == null || resV <= 0) {
+                                    println("Insira um valor válido.")
+                                    continue
+                                }
+                                var t = resV - 1
+                                Fausto.itensList[t]?.qnt--
+                                Fausto.Life += Fausto.itensList[t]?.heal ?: 0
+                                if (Fausto.Life > Fausto.LifeTotal) {
+                                    Fausto.Life = Fausto.LifeTotal
+                                }
+                                if (Fausto.itensList[t]?.qnt == 0) {
+                                    Fausto.itensList.removeAt(t)
+                                }
+                                println("[Fausto] se curou!")
+                                repA = false
                             }
-                            repA = false
                         }
                         else -> println("Ação invalida.")
                     }
@@ -528,34 +545,68 @@ fun main() {
                     }
                     5 -> {
                         var n = 1
-                        println("[Fausto's swords]")
-                        for (i in Fausto.swordList) {
-                            if(i?.equiped == true){
-                                println("$n - ${i?.nome} [EQUIPPED]")
-                                n++
-                            } else {
-                                println("$n - ${i?.nome}")
-                                n++
+                        if(Fausto.swordList.isEmpty()) {
+                            println("[FAUSTO] não tem nenhuma espada!")
+                        } else {
+                            println("[Fausto's swords]")
+                            for (i in Fausto.swordList) {
+                                if (i?.equiped == true) {
+                                    println("$n - ${i?.nome} [EQUIPPED]")
+                                    n++
+                                } else {
+                                    println("$n - ${i?.nome}")
+                                    n++
+                                }
+                            }
+                            println("[Digite 0 para sair]")
+                            println("Deseja equipar qual arma?")
+                            val resV = readLine()?.toIntOrNull()
+                            if (resV == null || resV <= 0) {
+                                println("Insira um valor válido.")
+                                continue
+                            }
+                            var t = resV - 1
+                            Fausto.swordList[t]?.equipLevel?.let {
+                                if (it > Fausto.Level) {
+                                    println("[FAUSTO] não tem nivel o suficiente para equipar esta espada!")
+                                } else {
+                                    for (i in Fausto.swordList) {
+                                        i?.equiped = false
+                                    }
+                                    Fausto.swordList[t]?.equiped = true;
+                                    println("[FAUSTO] equipou [${Fausto.swordList[t]?.nome}]")
+                                }
                             }
                         }
-                        println("[Digite 0 para sair]")
-                        println("Deseja equipar qual arma?")
-                        val resV = readLine()?.toIntOrNull()
-                        if (resV == null || resV <= 0) {
-                            println("Insira um valor válido.")
-                            continue
-                        }
-                        for (i in Fausto.swordList){
-                            i?.equiped = false
-                        }
-                        var t = resV - 1
-                        Fausto.swordList[t]?.equiped = true;
-                        println("[FAUSTO] equipou [${Fausto.swordList[t]?.nome}]")
                     }
                     6 -> {
-                        println("[Fausto's poções]")
-                        for (i in Fausto.itensList) {
-                            println("-${i?.nome} [${i?.qnt}]")
+                        var n = 1
+                        if (Fausto.itensList.isEmpty()){
+                            println("[FAUSTO] não tem nenhuma poção!")
+                        } else {
+                            println("[Fausto's poções]")
+
+                            for (i in Fausto.itensList) {
+                                println("$n - ${i?.nome} [${i?.qnt}]")
+                                n++
+                            }
+                            println("[Digite 0 para sair]")
+                            println("[Usar qual item de cura?]")
+                            val resV = readLine()?.toIntOrNull()
+                            if (resV == null || resV <= 0) {
+                                println("Insira um valor válido.")
+                                continue
+                            }
+                            var t = resV - 1
+                            Fausto.itensList[t]?.qnt--
+                            Fausto.Life += Fausto.itensList[t]?.heal ?: 0
+                            if (Fausto.Life > Fausto.LifeTotal) {
+                                Fausto.Life = Fausto.LifeTotal
+                            }
+                            if (Fausto.itensList[t]?.qnt == 0) {
+                                Fausto.itensList.removeAt(t)
+                            }
+                            println("[Fausto] se curou!")
                         }
                     }
                     else -> {
@@ -720,36 +771,68 @@ fun main() {
                     }
                     4 -> {
                         var n = 1
-                        println("[Fausto's swords]")
-                        for (i in Fausto.swordList) {
-                            if(i?.equiped == true){
-                                println("$n - ${i?.nome} [EQUIPPED]")
-                                n++
-                            } else {
-                                println("$n - ${i?.nome}")
-                                n++
+                        if(Fausto.swordList.isEmpty()) {
+                            println("[FAUSTO] não tem nenhuma espada!")
+                        } else {
+                            println("[Fausto's swords]")
+                            for (i in Fausto.swordList) {
+                                if (i?.equiped == true) {
+                                    println("$n - ${i?.nome} [EQUIPPED]")
+                                    n++
+                                } else {
+                                    println("$n - ${i?.nome}")
+                                    n++
+                                }
+                            }
+                            println("[Digite 0 para sair]")
+                            println("Deseja equipar qual arma?")
+                            val resV = readLine()?.toIntOrNull()
+                            if (resV == null || resV <= 0) {
+                                println("Insira um valor válido.")
+                                continue
+                            }
+                            var t = resV - 1
+                            Fausto.swordList[t]?.equipLevel?.let {
+                                if (it > Fausto.Level) {
+                                    println("[FAUSTO] não tem nivel o suficiente para equipar esta espada!")
+                                } else {
+                                    for (i in Fausto.swordList) {
+                                        i?.equiped = false
+                                    }
+                                    Fausto.swordList[t]?.equiped = true;
+                                    println("[FAUSTO] equipou [${Fausto.swordList[t]?.nome}]")
+                                }
                             }
                         }
-                        println("[Digite 0 para sair]")
-                        println("Deseja equipar qual arma?")
-                        val resV = readLine()?.toIntOrNull()
-                        if (resV == null || resV <= 0) {
-                            println("Insira um valor válido.")
-                            continue
-                        }
-                        for (i in Fausto.swordList){
-                            i?.equiped = false
-                        }
-                        var t = resV - 1
-                        Fausto.swordList[t]?.equiped = true;
-                        println("[FAUSTO] equipou [${Fausto.swordList[t]?.nome}]")
                     }
                     5 -> {
                         var n = 1
-                        println("[Fausto's poções]")
-                        for (i in Fausto.itensList) {
-                            println("$n - ${i?.nome} [${i?.qnt}]")
-                            n++
+                        if (Fausto.itensList.isEmpty()){
+                            println("[FAUSTO] não tem nenhuma poção!")
+                        } else {
+                            println("[Fausto's poções]")
+
+                            for (i in Fausto.itensList) {
+                                println("$n - ${i?.nome} [${i?.qnt}]")
+                                n++
+                            }
+                            println("[Digite 0 para sair]")
+                            println("[Usar qual item de cura?]")
+                            val resV = readLine()?.toIntOrNull()
+                            if (resV == null || resV <= 0) {
+                                println("Insira um valor válido.")
+                                continue
+                            }
+                            var t = resV - 1
+                            Fausto.itensList[t]?.qnt--
+                            Fausto.Life += Fausto.itensList[t]?.heal ?: 0
+                            if (Fausto.Life > Fausto.LifeTotal) {
+                                Fausto.Life = Fausto.LifeTotal
+                            }
+                            if (Fausto.itensList[t]?.qnt == 0) {
+                                Fausto.itensList.removeAt(t)
+                            }
+                            println("[Fausto] se curou!")
                         }
                     }
                     else -> {
