@@ -1,0 +1,435 @@
+import kotlin.system.exitProcess
+import Faust.Faust
+import kotlin.random.Random
+import Monsters.goblin
+import Monsters.FadaGelo
+import Monsters.Corvo
+import Monsters.Slime
+import Monsters.Prinny
+import Monsters.`Nivel 1`.Monster
+import Monsters.`Nivel 2`.Bruxa
+import Monsters.`Nivel 2`.Esqueleto
+import Monsters.`Nivel 2`.Fantasma
+import Monsters.`Nivel 2`.Lobo
+import Monsters.`Nivel 2`.Sacerdotisa
+import Monsters.`Nivel 3`.Bibliotecaria
+import Monsters.`Nivel 3`.China
+import Monsters.`Nivel 3`.Principe
+import Monsters.`Nivel 3`.Princesa
+import Monsters.`Nivel 3`.Tubarao
+import Monsters.`Nivel 4`.Cultista
+import Monsters.`Nivel 4`.Empregada
+import Monsters.`Nivel 4`.Golem
+import Monsters.`Nivel 4`.Oni
+import Monsters.`Nivel 4`.Valkyria
+import Monsters.`Nivel 5`.Hydra
+import Monsters.`Nivel 5`.Marte
+import Monsters.`Nivel 5`.Rei
+import Monsters.`Nivel 5`.Tepes
+import Monsters.`Nivel 5`.Vampira
+import Faust.Itens.Pocoes
+import Faust.Itens.Poc.Bratwurst
+import Faust.Itens.Poc.`Fruta Vermelha`
+import Faust.Itens.Poc.Vinho
+import Faust.Itens.Poc.PocaoP
+import Faust.Itens.Poc.PocaoG
+import Faust.Itens.Poc.PocaoM
+import Faust.Swords.Sword
+import Faust.Swords.Sw.Gladius
+import Faust.Swords.Sw.`Espada de Madeira`
+import Faust.Swords.Sw.Gungnir
+import Faust.Swords.Sw.Katana
+import Faust.Swords.Sw.`Werther's Gun`
+import Faust.Swords.Sw.zweihander
+import Faust.Swords.Sw.`Siegfried's sword`
+import kotlin.contracts.SimpleEffect
+
+
+fun main() {
+    //personagem principal
+    var Fausto = Faust();
+    //dungeon
+    var dungeon = Dungeon()
+
+    //itens encontrados pela dungeon
+    var gladius = Gladius()
+    var madeira = `Espada de Madeira`()
+    var zweihander = zweihander()
+    var siegfried = `Siegfried's sword`()
+    var fruta = `Fruta Vermelha`()
+    var bratwurst = Bratwurst()
+    var vinho = Vinho()
+    //itens comprados na loja
+    var katana = Katana()
+    var gungnir = Gungnir()
+    var werther = `Werther's Gun`()
+    var pocaop = PocaoP()
+    var pocaom = PocaoM()
+    var pocaog = PocaoG()
+
+    while (true) {
+        //nome do nivel da dungeon
+        if (dungeon.NameNivel == true) {
+            when (dungeon.nivelDungeon) {
+                1 -> {
+                    println("[DUNGEON NV01] OS SOFRIMENTOS DO JOVEM WERTHER")
+                    dungeon.NameNivel = false
+                }
+
+                2 -> {
+                    println("[DUNGEON NV02] AFINIDADES ELETIVAS")
+                    dungeon.NameNivel = false
+                }
+
+                3 -> {
+                    println("[DUNGEON NV03] TRILOGIA DA PAIXÃO")
+                    dungeon.NameNivel = false
+                }
+
+                4 -> {
+                    println("[DUNGEON NV04] OS ANOS DE APRENDIZADO DE WILHELM MEISTER")
+                    dungeon.NameNivel = false
+                }
+
+                5 -> {
+                    println("[DUNGEON NV05] FAUSTO")
+                    dungeon.NameNivel = false
+                }
+            }
+        }
+        //sistema de combate
+        var tes = Random.nextInt(1, 10)
+        //encontro com monstros
+        if (tes <= 7) {
+            var num = Random.nextInt(1, 5)
+            var Monster: Monster? = null
+            when (dungeon.nivelDungeon) {
+                1 -> {
+                    when (num) {
+                        1 -> {
+                            Monster = FadaGelo()
+                        }
+
+                        2 -> {
+                            Monster = Corvo()
+                        }
+
+                        3 -> {
+                            Monster = goblin()
+                        }
+
+                        4 -> {
+                            Monster = Slime()
+                        }
+
+                        5 -> {
+                            Monster = Prinny()
+                        }
+                    }
+                }
+
+                2 -> {
+                    when (num) {
+                        1 -> {
+                            Monster = Lobo()
+                        }
+
+                        2 -> {
+                            Monster = Fantasma()
+                        }
+
+                        3 -> {
+                            Monster = Sacerdotisa()
+                        }
+
+                        4 -> {
+                            Monster = Bruxa()
+                        }
+
+                        5 -> {
+                            Monster = Esqueleto()
+                        }
+                    }
+                }
+
+                3 -> {
+                    when (num) {
+                        1 -> {
+                            Monster = China()
+                        }
+
+                        2 -> {
+                            Monster = Bibliotecaria()
+                        }
+
+                        3 -> {
+                            Monster = Princesa()
+                        }
+
+                        4 -> {
+                            Monster = Principe()
+                        }
+
+                        5 -> {
+                            Monster = Tubarao()
+                        }
+                    }
+                }
+
+                4 -> {
+                    when (num) {
+                        1 -> {
+                            Monster = Valkyria()
+                        }
+
+                        2 -> {
+                            Monster = Golem()
+                        }
+
+                        3 -> {
+                            Monster = Cultista()
+                        }
+
+                        4 -> {
+                            Monster = Oni()
+                        }
+
+                        5 -> {
+                            Monster = Empregada()
+                        }
+                    }
+                }
+
+                5 -> {
+                    when (num) {
+                        1 -> {
+                            Monster = Tepes()
+                        }
+
+                        2 -> {
+                            Monster = Vampira()
+                        }
+
+                        3 -> {
+                            Monster = Marte()
+                        }
+
+                        4 -> {
+                            Monster = Rei()
+                        }
+
+                        5 -> {
+                            Monster = Hydra()
+                        }
+                    }
+                }
+            }
+
+            val monstro = Monster ?: throw IllegalStateException("Monster não foi inicializado")
+            var decisao = 0
+            var danoE = 0
+            for (i in Fausto.swordList){
+                if(i?.equiped == true){
+                    danoE = i.attack
+                }
+            }
+            println("[${Monster.name}] apareceu!")
+            while (Fausto.Alive == true && Monster.Alive == true) {
+                println("[${Monster.name}'s life] -> ${Monster.life}/${Monster.lifeTotal}")
+                println("[FAUSTO's life] -> ${Fausto.Life}/${Fausto.LifeTotal}")
+                var repA = true
+                while (repA) {
+                    println("O que [FAUSTO] fará?")
+                    println("[1] Atacar;\n[2] Curar;")
+                    decisao = readLine()!!.toInt()
+                    when (decisao) {
+                        1 -> {
+                            val dano = Fausto.Atacar(Monster.defense) + danoE
+                            Monster.life -= dano
+                            println("[FAUSTO] atacou [${Monster.name}]!")
+                            println("[FAUSTO] causou ${dano} de dano ao monstro.")
+                            repA = false
+                        }
+
+                        2 -> {
+                            var n = 1
+                            if (Fausto.itensList.isEmpty()) {
+                                println("[FAUSTO] não tem nenhuma poção.")
+                            } else {
+                                println("[Fausto's poções]")
+                                for (i in Fausto.itensList) {
+                                    println("$n - ${i?.nome} [${i?.qnt}]")
+                                    n++
+                                }
+                                println("[Usar qual item de cura?]")
+                                val resV = readLine()?.toIntOrNull()
+                                if (resV == null || resV <= 0) {
+                                    println("Insira um valor válido.")
+                                    continue
+                                }
+                                var t = resV - 1
+                                Fausto.itensList[t]?.qnt--
+                                Fausto.Life += Fausto.itensList[t]?.heal ?: 0
+                                if (Fausto.Life > Fausto.LifeTotal) {
+                                    Fausto.Life = Fausto.LifeTotal
+                                }
+                                if (Fausto.itensList[t]?.qnt == 0) {
+                                    Fausto.itensList.removeAt(t)
+                                }
+                                println("[Fausto] se curou!")
+                                repA = false
+                            }
+                        }
+                        else -> println("Ação invalida.")
+
+                    }
+                }
+                if (Monster.life > 0) {
+                    println("[${Monster.name}] usou atacar!")
+                    val dano = Monster.Atacar(Fausto.Defese)
+                    Fausto.Life -= dano
+                    println("[${Monster.name}] causou ${dano} de dano ao heroi.")
+
+                    if (Fausto.Life <= 0) {
+                        Fausto.Alive = false
+                        println("[FAUSTO PERDEU A LUTA...]")
+                        println("{FIM DE JOGO}")
+                        exitProcess(0)
+                    }
+                } else {
+                    Monster.Alive = false
+                    println("[FAUSTO] VENCEU A LUTA!!")
+                    println("XP ganho -> ${Monster.xp}")
+                    println("Ouro saqueado -> ${Monster.gold}")
+                    Fausto.Evoluir(Monster.xp)
+                    Fausto.saquear(Monster.gold)
+
+                    if (Fausto.XP >= Fausto.XPtotal) {
+                        println("[FAUSTO] SUBIU DE NIVEL!!!")
+                        Fausto.SubirDeNivel()
+                    }
+                }
+            }
+        }
+        //encontro com baús do tesouro
+        else {
+            println("[FAUSTO ENCONTROU UM TESOURO]")
+            var ouroR = Random.nextInt(30, 300)
+            println("[FAUSTO] encontrou ${ouroR} de ouro.")
+            Fausto.Gold += ouroR
+            var sran = Random.nextInt(1, 100)
+            when (sran) {
+                in 1..40 -> {
+                    if (madeira.inventory == false) {
+                        madeira.inventory = true
+                        Fausto.swordList.add(madeira)
+                        println("[FAUSTO ACHOU ${madeira.nome}]")
+                    }
+                }
+
+                in 41..70 -> {
+                    if (gladius.inventory == false) {
+                        gladius.inventory = true
+                        Fausto.swordList.add(gladius)
+                        println("[FAUSTO ACHOU ${gladius.nome}]")
+                    }
+                }
+
+                in 71..90 -> {
+                    if (siegfried.inventory == false) {
+                        siegfried.inventory = true
+                        Fausto.swordList.add(siegfried)
+                        println("[FAUSTO ACHOU ${siegfried.nome}]")
+                    }
+                }
+
+                in 91..100 -> {
+                    if (zweihander.inventory == false) {
+                        zweihander.inventory = true
+                        Fausto.swordList.add(zweihander)
+                        println("[FAUSTO ACHOU ${zweihander.nome}]")
+                    }
+                }
+
+            }
+            var pran = Random.nextInt(1, 100)
+            when (pran) {
+                in 1..50 -> {
+                    var qntran = Random.nextInt(1, 10)
+                    if (fruta.inventory == false) {
+                        fruta.inventory = true
+                        fruta.qnt += qntran
+                        Fausto.itensList.add(fruta)
+                        println("[FAUSTO ACHOU $qntran ${fruta.nome}s]")
+                    }
+                }
+
+                in 51..70 -> {
+                    var qntran = Random.nextInt(1, 10)
+                    if (bratwurst.inventory == false) {
+                        bratwurst.inventory = true
+                        bratwurst.qnt += qntran
+                        Fausto.itensList.add(bratwurst)
+                        println("[FAUSTO ACHOU $qntran ${bratwurst.nome}s]")
+                    }
+                }
+
+                in 71..100 -> {
+                    var qntran = Random.nextInt(1, 10)
+                    if (vinho.inventory == false) {
+                        vinho.inventory = true
+                        vinho.qnt += qntran
+                        Fausto.itensList.add(vinho)
+                        println("[FAUSTO ACHOU $qntran ${vinho.nome}s]")
+                    }
+                }
+            }
+        }
+        //menu
+        println("O caminho para o proximo nivel esta livre!!!")
+        println("[~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]")
+        dungeon.MenuRep = true
+        while (dungeon.MenuRep == true) {
+            println("Proxima decisão de [FAUSTO]?")
+            var decisao01: Int
+            if (dungeon.proxNivel >= 5) {
+                println("[1] prosseguir para a proxima sala.")
+                println("[2] Ir ao proximo nivel da dungeon")
+                println("[3] Ir a loja.")
+                println("[4] Conferir status")
+                println("[5] Inventario de armas")
+                println("[6] Inventario de poções")
+                decisao01 = readLine()!!.toInt()
+                when (decisao01) {
+                    1 -> {dungeon.ProximaSala()}
+                    2 -> {dungeon.ProximoNivelDungeon()}
+                    3 -> {dungeon.loja(Fausto)}
+                    4 -> {dungeon.Status(Fausto)}
+                    5 -> {dungeon.InventarioArmas(Fausto)}
+                    6 -> {dungeon.InventarioPocoes(Fausto)}
+                    else -> {
+                        println("Comando invalido")
+                    }
+                }
+            }
+            else {
+                println("[1] prosseguir para a proxima sala")
+                println("[2] Ir a loja.")
+                println("[3] Conferir status")
+                println("[4] Inventario de armas")
+                println("[5] Inventario de poções")
+                decisao01 = readLine()!!.toInt()
+                when (decisao01) {
+                    1 -> {dungeon.ProximaSala()}
+                    2 -> {dungeon.loja(Fausto)}
+                    3 -> {dungeon.Status(Fausto)}
+                    4 -> {dungeon.InventarioArmas(Fausto)}
+                    5 -> {dungeon.InventarioPocoes(Fausto)}
+                    else -> {
+                        println("Comando invalido")
+                    }
+                }
+            }
+        }
+    }
+}
