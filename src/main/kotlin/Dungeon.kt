@@ -47,6 +47,7 @@ public class Dungeon {
     fun loja(Faust: Faust)
     {
         println("[Bem vindo à loja do vendedor Schiller!]")
+        println("[Fausto's Gold] -> ${Faust.Gold}")
         println("1 - conferir lista de armas.\n2 - conferir lista de poções.\n3 - sair da loja.")
         var res = readLine()?.toInt()
         when(res) {
@@ -198,10 +199,10 @@ public class Dungeon {
             println("[Fausto's swords]")
             for (i in Faust.swordList) {
                 if (i?.equiped == true) {
-                    println("$n - ${i?.nome} [EQUIPPED]")
+                    println("[$n] - ${i?.nome} [EQUIPPED] / [Nivel Necessario] - ${i?.equipLevel}")
                     n++
                 } else {
-                    println("$n - ${i?.nome}")
+                    println("[$n] - ${i?.nome} / [Nivel Necessario] - ${i?.equipLevel}")
                     n++
                 }
             }

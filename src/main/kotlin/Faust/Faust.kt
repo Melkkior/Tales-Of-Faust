@@ -16,10 +16,10 @@ class Faust {
     public var itensList: MutableList<Pocoes?> = mutableListOf()
 
     fun Atacar(DefM: Int, Fausto: Faust): Int{
-        var dano = 0
+        var dano = Attack
         for (i in Fausto.swordList){
             if(i?.equiped == true){
-                dano = Attack + i.attack
+                dano += i.attack
             }
         }
         return dano - DefM
