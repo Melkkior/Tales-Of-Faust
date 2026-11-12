@@ -48,6 +48,7 @@ import kotlin.contracts.SimpleEffect
 fun main() {
     //personagem principal
     var Fausto = Faust();
+
     //dungeon
     var dungeon = Dungeon()
 
