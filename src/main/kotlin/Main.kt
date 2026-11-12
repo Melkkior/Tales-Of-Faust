@@ -44,27 +44,27 @@ import Faust.Swords.Sw.`Siegfried's sword`
 
 fun main() {
     //personagem principal
-    var Fausto = Faust();
+    val Fausto = Faust();
 
     //dungeon
-    var dungeon = Dungeon()
+    val dungeon = Dungeon()
 
     //itens encontrados pela dungeon
-    var gladius = Gladius()
-    var madeira = `Espada de Madeira`()
-    var zweihander = zweihander()
-    var siegfried = `Siegfried's sword`()
-    var fruta = `Fruta Vermelha`()
-    var bratwurst = Bratwurst()
-    var vinho = Vinho()
+    val gladius = Gladius()
+    val madeira = `Espada de Madeira`()
+    val zweihander = zweihander()
+    val siegfried = `Siegfried's sword`()
+    val fruta = `Fruta Vermelha`()
+    val bratwurst = Bratwurst()
+    val vinho = Vinho()
 
     //itens comprados na loja
-    var katana = Katana()
-    var gungnir = Gungnir()
-    var werther = `Werther's Gun`()
-    var pocaop = PocaoP()
-    var pocaom = PocaoM()
-    var pocaog = PocaoG()
+    //val katana = Katana()
+    //val gungnir = Gungnir()
+    //val werther = `Werther's Gun`()
+    //val pocaop = PocaoP()
+    //val pocaom = PocaoM()
+    //val pocaog = PocaoG()
 
     while (true) {
         //nome do nivel da dungeon
@@ -97,10 +97,10 @@ fun main() {
             }
         }
         //sistema de combate
-        var tes = Random.nextInt(1, 10)
+        val tes = Random.nextInt(1, 10)
         //encontro com monstros
         if (tes <= 7) {
-            var num = Random.nextInt(1, 5)
+            val num = Random.nextInt(1, 5)
             var Monster: Monster? = null
             when (dungeon.nivelDungeon) {
                 1 -> {
@@ -261,7 +261,7 @@ fun main() {
                                     println("Insira um valor válido.")
                                     continue
                                 }
-                                var t = resV - 1
+                                val t = resV - 1
                                 Fausto.itensList[t]?.qnt--
                                 Fausto.Life += Fausto.itensList[t]?.heal ?: 0
                                 if (Fausto.Life > Fausto.LifeTotal) {
@@ -308,10 +308,10 @@ fun main() {
         //encontro com baús do tesouro
         else {
             println("[FAUSTO ENCONTROU UM TESOURO]")
-            var ouroR = Random.nextInt(30, 300)
+            val ouroR = Random.nextInt(30, 300)
             println("[FAUSTO] encontrou ${ouroR} de ouro.")
             Fausto.Gold += ouroR
-            var sran = Random.nextInt(1, 100)
+            val sran = Random.nextInt(1, 100)
             when (sran) {
                 in 1..40 -> {
                     if (madeira.inventory == false) {
@@ -346,10 +346,10 @@ fun main() {
                 }
 
             }
-            var pran = Random.nextInt(1, 100)
+            val pran = Random.nextInt(1, 100)
             when (pran) {
                 in 1..50 -> {
-                    var qntran = Random.nextInt(1, 10)
+                    val qntran = Random.nextInt(1, 10)
                     if (fruta.inventory == false) {
                         fruta.inventory = true
                         fruta.qnt += qntran
@@ -359,7 +359,7 @@ fun main() {
                 }
 
                 in 51..70 -> {
-                    var qntran = Random.nextInt(1, 10)
+                    val qntran = Random.nextInt(1, 10)
                     if (bratwurst.inventory == false) {
                         bratwurst.inventory = true
                         bratwurst.qnt += qntran
@@ -369,7 +369,7 @@ fun main() {
                 }
 
                 in 71..100 -> {
-                    var qntran = Random.nextInt(1, 10)
+                    val qntran = Random.nextInt(1, 10)
                     if (vinho.inventory == false) {
                         vinho.inventory = true
                         vinho.qnt += qntran
