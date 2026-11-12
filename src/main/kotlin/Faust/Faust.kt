@@ -31,9 +31,9 @@ class Faust {
         Level++
         XP = 0
         XPtotal = (100 * 1.5).toInt()
-        LifeTotal = 100 + ((Level - 1) * 35)
+        LifeTotal = 100 + ((Level - 1) * 15)
         Life = LifeTotal
-        Defese = 14 + ((Level - 1) * 3)
-        Attack = 24 + ((Level - 1) * 6)
+        Defese = 14 + ((Level - 1) * 2)
+        Attack = 24 + ((Level - 1) * 3)
     }
 }
