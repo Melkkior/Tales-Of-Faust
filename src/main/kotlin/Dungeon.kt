@@ -217,6 +217,7 @@ public class Dungeon {
                         }
                         Faust.swordList[t]?.equiped = true;
                         println("[FAUSTO] equipou [${Faust.swordList[t]?.nome}]")
+                        break
                     }
                 }
             }
