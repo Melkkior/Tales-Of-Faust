@@ -15,8 +15,14 @@ class Faust {
     public var swordList: MutableList<Sword?> = mutableListOf()
     public var itensList: MutableList<Pocoes?> = mutableListOf()
 
-    fun Atacar(DefM: Int): Int{
-        return Attack - DefM
+    fun Atacar(DefM: Int, Fausto: Faust): Int{
+        var dano = 0
+        for (i in Fausto.swordList){
+            if(i?.equiped == true){
+                dano = Attack + i.attack
+            }
+        }
+        return dano - DefM
     }
 
     fun Evoluir(xpM: Int){

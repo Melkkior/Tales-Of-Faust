@@ -27,14 +27,12 @@ import Monsters.`Nivel 5`.Marte
 import Monsters.`Nivel 5`.Rei
 import Monsters.`Nivel 5`.Tepes
 import Monsters.`Nivel 5`.Vampira
-import Faust.Itens.Pocoes
 import Faust.Itens.Poc.Bratwurst
 import Faust.Itens.Poc.`Fruta Vermelha`
 import Faust.Itens.Poc.Vinho
 import Faust.Itens.Poc.PocaoP
 import Faust.Itens.Poc.PocaoG
 import Faust.Itens.Poc.PocaoM
-import Faust.Swords.Sword
 import Faust.Swords.Sw.Gladius
 import Faust.Swords.Sw.`Espada de Madeira`
 import Faust.Swords.Sw.Gungnir
@@ -42,7 +40,6 @@ import Faust.Swords.Sw.Katana
 import Faust.Swords.Sw.`Werther's Gun`
 import Faust.Swords.Sw.zweihander
 import Faust.Swords.Sw.`Siegfried's sword`
-import kotlin.contracts.SimpleEffect
 
 
 fun main() {
@@ -60,6 +57,7 @@ fun main() {
     var fruta = `Fruta Vermelha`()
     var bratwurst = Bratwurst()
     var vinho = Vinho()
+
     //itens comprados na loja
     var katana = Katana()
     var gungnir = Gungnir()
@@ -228,12 +226,7 @@ fun main() {
 
             val monstro = Monster ?: throw IllegalStateException("Monster não foi inicializado")
             var decisao = 0
-            var danoE = 0
-            for (i in Fausto.swordList){
-                if(i?.equiped == true){
-                    danoE = i.attack
-                }
-            }
+
             println("[${Monster.name}] apareceu!")
             while (Fausto.Alive == true && Monster.Alive == true) {
                 println("[${Monster.name}'s life] -> ${Monster.life}/${Monster.lifeTotal}")
@@ -245,7 +238,7 @@ fun main() {
                     decisao = readLine()!!.toInt()
                     when (decisao) {
                         1 -> {
-                            val dano = Fausto.Atacar(Monster.defense) + danoE
+                            val dano = Fausto.Atacar(Monster.defense, Fausto)
                             Monster.life -= dano
                             println("[FAUSTO] atacou [${Monster.name}]!")
                             println("[FAUSTO] causou ${dano} de dano ao monstro.")
