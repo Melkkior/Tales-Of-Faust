@@ -199,9 +199,12 @@ public class Dungeon {
                 println("Deseja equipar qual arma?")
                 val resV = readLine()?.toIntOrNull()
 
-                if (resV == null || resV <= 0) {
+                if (resV == null || resV < 0) {
                     println("Insira um valor válido.")
                     continue
+                }
+                if(resV == 0){
+                    break
                 }
 
                 var t = resV - 1

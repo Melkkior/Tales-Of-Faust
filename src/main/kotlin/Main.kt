@@ -82,7 +82,7 @@ fun main() {
                 }
 
                 3 -> {
-                    println("[DUNGEON NV03] TRILOGIA DA PAIXÃO")
+                    println("[DUNGEON NV03] METAMORFOSE DAS PLANTAS")
                     dungeon.NameNivel = false
                 }
 
