@@ -19,6 +19,17 @@ public class Dungeon {
     var pocaom = PocaoM()
     var pocaog = PocaoG()
 
+    fun Menu(dungeon: Dungeon){
+        var n = 1
+        println("[${n++}] prosseguir para a proxima sala.")
+        if(dungeon.proxNivel >= 5) {
+            println("[${n++}] Ir ao proximo nivel da dungeon")
+        }
+        println("[${n++}] Ir a loja.")
+        println("[${n++}] Conferir status")
+        println("[${n++}] Inventario de armas")
+        println("[${n++}] Inventario de poções")
+    }
     fun ProximaSala()
     {
         proxNivel++

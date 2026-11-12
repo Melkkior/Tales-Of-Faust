@@ -393,12 +393,7 @@ fun main() {
             println("Proxima decisão de [FAUSTO]?")
             var decisao01: Int
             if (dungeon.proxNivel >= 5) {
-                println("[1] prosseguir para a proxima sala.")
-                println("[2] Ir ao proximo nivel da dungeon")
-                println("[3] Ir a loja.")
-                println("[4] Conferir status")
-                println("[5] Inventario de armas")
-                println("[6] Inventario de poções")
+                dungeon.Menu(dungeon)
                 decisao01 = readLine()!!.toInt()
                 when (decisao01) {
                     1 -> {dungeon.ProximaSala()}
@@ -413,11 +408,7 @@ fun main() {
                 }
             }
             else {
-                println("[1] prosseguir para a proxima sala")
-                println("[2] Ir a loja.")
-                println("[3] Conferir status")
-                println("[4] Inventario de armas")
-                println("[5] Inventario de poções")
+                dungeon.Menu(dungeon)
                 decisao01 = readLine()!!.toInt()
                 when (decisao01) {
                     1 -> {dungeon.ProximaSala()}
