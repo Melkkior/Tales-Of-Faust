@@ -267,7 +267,8 @@ public class Dungeon {
                 if (Faust.itensList[t]?.qnt == 0) {
                     Faust.itensList.removeAt(t)
                 }
-                println("[Fausto] se curou!")
+                println("[Fausto] se curou ${Faust.itensList[t]?.heal} pontos de vida!")
+                println("[Fausto's life] -> ${Faust.Life}")
                 break
             }
         }
